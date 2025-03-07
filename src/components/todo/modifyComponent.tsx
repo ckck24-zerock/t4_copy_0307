@@ -7,7 +7,7 @@ import ResultModal from "../common/resultModal.tsx";
 
 function ModifyComponent() {
 
-    const {todo, setTodo, loading } = useCustomRead()
+    const {todo, setTodo, loading, moveList } = useCustomRead()
     const {openModal, msg, result, closeModifyAction, closeDeleteAction } = useCustomResult()
 
     const changeTitle = (e:ChangeEvent<HTMLInputElement>):void => {

@@ -1,4 +1,3 @@
-import {useState} from "react";
 
 
 interface ResultModalProps {
@@ -14,9 +13,12 @@ function ResultModal({show, closeResultModal }: ResultModalProps) {
     }
 
     return (
-        <div>
-            <div className={'text-4xl'}>RESULT</div>
-            <button onClick={closeResultModal}>CLOSE</button>
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"
+             style={{ backgroundColor: 'rgba(169, 169, 169, 0.7)' }}  >
+            <div className="bg-white p-6 rounded-lg shadow-lg">
+                <div className={'text-4xl'}>RESULT</div>
+                <button onClick={closeResultModal}>CLOSE</button>
+            </div>
         </div>
     );
 

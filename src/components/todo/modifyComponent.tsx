@@ -30,6 +30,16 @@ function ModifyComponent() {
         })
     }
 
+    const closeAll = () => {
+        closeAction(() => {
+            if(msg.startsWith('DELETE')) {
+                moveList()
+            }else if(msg.startsWith('UPDATE')) {
+                moveRead(todo.tno)
+            }
+        })
+    }
+
 
     return (
         <div className="max-w-lg mx-auto p-6 bg-white shadow-lg rounded-lg">
@@ -39,13 +49,7 @@ function ModifyComponent() {
             <ResultModal
                 show={ result }
                 msg={ msg }
-                closeResultModal={() => closeAction(() => {
-                    if(msg.startsWith('DELETE')) {
-                        moveList()
-                    }else if(msg.startsWith('UPDATE')) {
-                        moveRead(todo.tno)
-                    }
-                })}
+                closeResultModal={closeAll}
             ></ResultModal>
 
             <h2 className="text-xl font-semibold text-gray-800 mb-4">📌 Todo Modify Component</h2>

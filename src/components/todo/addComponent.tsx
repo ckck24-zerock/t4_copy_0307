@@ -30,9 +30,14 @@ function AddComponent() {
         postTodo(todoAdd).then(result => {
             openModal(`New Todo ${result} Added`)
         })
-
-
     }
+
+    const closeAll = () => {
+        closeAction(()=> {
+            moveList()
+        })
+    }
+
 
     return (
         <div className="max-w-lg mx-auto p-6 bg-white shadow-lg rounded-lg">
@@ -40,9 +45,7 @@ function AddComponent() {
             <ResultModal
                 show={ result }
                 msg={ msg }
-                closeResultModal={() => closeAction(()=> {
-                    moveList()
-                })}
+                closeResultModal={closeAll}
             />
 
             <h2 className="text-xl font-semibold text-gray-800 mb-4">📌 Todo Add Component</h2>

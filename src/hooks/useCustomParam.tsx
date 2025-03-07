@@ -40,6 +40,10 @@ export default function useCustomParam() {
 
     }
 
+    const moveList = () => {
+        navigate(`/todo/list${queryString}`)
+    }
+
     const movePage = (pageNum:number):void => {
 
         //동일 페이지 클릭
@@ -52,8 +56,6 @@ export default function useCustomParam() {
 
     }
 
-
-
-    return {page,size, refresh, movePage, moveRead}
+    return {page,size, refresh, movePage, moveRead, moveList}
 
 }

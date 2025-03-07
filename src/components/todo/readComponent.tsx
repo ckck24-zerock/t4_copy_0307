@@ -15,18 +15,14 @@ const initState: TodoDTO = {
 function ReadComponent() {
 
     const {tno} = useParams() // useParams( )의 값은 모두 문자열
-    const {moveRead} = useCustomParam()
-
+    const {moveRead,moveList} = useCustomParam()
 
     const [todo, setTodo] = useState(initState)
-
     useEffect(() => {
 
         getTodo(Number(tno)).then(data => setTodo(data))
 
     }, [tno]);
-
-
 
     return (
         <div className="max-w-lg mx-auto p-6 bg-white shadow-lg rounded-lg">
@@ -68,6 +64,7 @@ function ReadComponent() {
                 <div className="flex justify-end space-x-4">
                     <button
                         className="px-4 py-2 bg-blue-500 text-white rounded"
+                        onClick={moveList}
                     >List</button>
                     <button
                         className="px-4 py-2 bg-green-500 text-white rounded"

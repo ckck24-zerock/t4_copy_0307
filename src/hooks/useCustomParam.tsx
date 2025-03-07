@@ -31,6 +31,8 @@ export default function useCustomParam() {
 
     const [refresh, setRefresh] = useState(false)
 
+    //const [loading, setLoading] = useState()
+
     const moveRead = (tnoNumber:number, path ?:string) => {
 
         const movePath = !path ?'read':path

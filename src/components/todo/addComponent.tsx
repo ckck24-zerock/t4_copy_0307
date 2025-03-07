@@ -1,4 +1,6 @@
 import {ChangeEvent, useState} from "react";
+import {postTodo} from "../../api/todoApi.tsx";
+import {useNavigate} from "react-router";
 
 
 const initState: TodoAdd = {
@@ -10,10 +12,21 @@ function AddComponent() {
 
     const [todoAdd, setTodoAdd] = useState<TodoAdd>(initState)
 
+    const navigate = useNavigate()
+
     const changeAdd = (e:ChangeEvent<HTMLInputElement>):void => {
 
         const {name, value} = e.target
         setTodoAdd(prevState => ({...prevState, [name]:value}))
+    }
+
+    const clickAdd = () => {
+
+        postTodo(todoAdd).then(result => {
+            console.log("todo add result: " + result)
+            navigate('/todo/list')
+        })
+
     }
 
 
@@ -48,6 +61,7 @@ function AddComponent() {
                 <div className="flex justify-end space-x-4">
                     <button
                         className="px-4 py-2 bg-green-500 text-white rounded"
+                        onClick={clickAdd}
                     >Add</button>
                 </div>
             </div>

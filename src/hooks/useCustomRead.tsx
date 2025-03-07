@@ -1,6 +1,7 @@
 import {useParams} from "react-router";
 import {useEffect, useState} from "react";
 import {getTodo} from "../api/todoApi.tsx";
+import useCustomParam from "./useCustomParam.tsx";
 
 const initState: TodoDTO = {
     tno: 0,
@@ -12,11 +13,13 @@ const initState: TodoDTO = {
 
 export default function useCustomRead () {
 
-    const {tno} = useParams() // useParams( )의 값은 모두 문자열
+    const {tno, } = useParams() // useParams( )의 값은 모두 문자열
 
     const [todo, setTodo] = useState(initState)
 
     const [loading, setLoading] = useState(false)
+
+    const {moveList,moveRead} = useCustomParam()
 
     useEffect(() => {
 
@@ -30,5 +33,5 @@ export default function useCustomRead () {
 
     }, [tno]);
 
-    return {tno, loading, todo, setTodo}
+    return {tno, loading, todo, setTodo, moveRead,moveList}
 }

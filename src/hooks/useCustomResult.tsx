@@ -9,10 +9,16 @@ export default function useCustomResult() {
 
     const {moveList} = useCustomParam()
 
+    const openModal = (str:string)=>  {
+
+        setResult(true)
+        setMsg(str)
+    }
+
     const closeAddAction = () => {
         moveList()
         setResult(false)
     }
 
-    return {result, setResult, msg, setMsg, closeAddAction}
+    return {result,  msg, openModal, closeAddAction}
 }

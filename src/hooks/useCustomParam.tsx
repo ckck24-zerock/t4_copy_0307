@@ -55,6 +55,7 @@ export default function useCustomParam() {
             return
         }
         navigate(`/todo/list?page=${pageNum}&size=${size}`)
+
     }
 
     return {page,size, loading, setLoading, refresh, movePage, moveRead, moveList}

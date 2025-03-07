@@ -5,7 +5,7 @@ import LoadingComponent from "../common/loadingComponent.tsx";
 function ReadComponent() {
 
 
-    const {todo,moveList, loading, moveRead} = useCustomRead()
+    const {todo, moveList, loading, moveRead} = useCustomRead()
 
 
     return (

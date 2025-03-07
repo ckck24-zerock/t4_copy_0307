@@ -2,10 +2,13 @@ import useCustomRead from "../../hooks/useCustomRead.tsx";
 import {ChangeEvent} from "react";
 import {deleteTodo, updateTodo} from "../../api/todoApi.tsx";
 import LoadingComponent from "../common/loadingComponent.tsx";
+import useCustomResult from "../../hooks/useCustomResult.tsx";
+import ResultModal from "../common/resultModal.tsx";
 
 function ModifyComponent() {
 
-    const {todo, setTodo, moveList, loading, moveRead} = useCustomRead()
+    const {todo, setTodo, loading } = useCustomRead()
+    const {openModal, msg, result, closeModifyAction, closeDeleteAction } = useCustomResult()
 
     const changeTitle = (e:ChangeEvent<HTMLInputElement>):void => {
 
@@ -16,8 +19,7 @@ function ModifyComponent() {
 
     const clickDelete = () => {
         deleteTodo(todo.tno).then(result => {
-            console.log("delete result: " + result)
-            moveList()
+            openModal('Todo deleted ' + result)
         })
     }
 
@@ -25,7 +27,7 @@ function ModifyComponent() {
 
         updateTodo(todo.tno, todo.title).then(result => {
             console.log(result)
-            moveRead(todo.tno)
+            openModal(todo.tno +" Updated")
         })
     }
 
@@ -34,6 +36,8 @@ function ModifyComponent() {
         <div className="max-w-lg mx-auto p-6 bg-white shadow-lg rounded-lg">
 
             <LoadingComponent isLoading={loading}/>
+
+            <ResultModal show={ result }  msg={ msg } closeResultModal={closeDeleteAction}></ResultModal>
 
             <h2 className="text-xl font-semibold text-gray-800 mb-4">📌 Todo Modify Component</h2>
 

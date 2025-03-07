@@ -3,9 +3,10 @@ import {useState} from "react";
 
 interface ResultModalProps {
     show:boolean
+    closeResultModal:() => void
 }
 
-function ResultModal({show}: ResultModalProps) {
+function ResultModal({show, closeResultModal }: ResultModalProps) {
 
     //false
     if(!show){
@@ -15,6 +16,7 @@ function ResultModal({show}: ResultModalProps) {
     return (
         <div>
             <div className={'text-4xl'}>RESULT</div>
+            <button onClick={closeResultModal}>CLOSE</button>
         </div>
     );
 

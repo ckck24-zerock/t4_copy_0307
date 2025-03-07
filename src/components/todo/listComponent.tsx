@@ -18,7 +18,7 @@ import PageComponent from "../common/pageComponent.tsx";
 
 function ListComponent() {
 
-    const {page, size, movePage} = useCustomParam()
+    const {page, size, refresh, movePage} = useCustomParam()
 
     const [serverData, setServerData] = useState<PageResponse<Todo>>(initState)
 
@@ -28,7 +28,7 @@ function ListComponent() {
             setServerData(data)
         })
 
-    }, [page,size]);
+    }, [page,size,refresh]);
 
 
 

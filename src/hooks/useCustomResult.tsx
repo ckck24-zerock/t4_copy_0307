@@ -7,7 +7,7 @@ export default function useCustomResult() {
     const [result, setResult] = useState(false)
     const [msg, setMsg] = useState('')
 
-    const {moveList, moveRead} = useCustomParam()
+    const {moveList} = useCustomParam()
 
     const openModal = (str:string)=>  {
 
@@ -20,16 +20,12 @@ export default function useCustomResult() {
         moveList()
     }
 
-    const closeModifyAction = (tno:number, path ?:string ) => {
+    const closeAction = (fn:() => void) => {
 
         setResult(false)
-        moveRead(tno,path)
+        fn()
     }
 
-    const closeDeleteAction = () => {
-        setResult(false)
-        moveList()
-    }
 
-    return {result,  msg, openModal, closeAddAction, closeModifyAction, closeDeleteAction}
+    return {result,  msg, openModal, closeAddAction, closeAction}
 }

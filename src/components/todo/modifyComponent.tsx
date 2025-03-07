@@ -7,8 +7,9 @@ import ResultModal from "../common/resultModal.tsx";
 
 function ModifyComponent() {
 
-    const {todo, setTodo, loading, moveList } = useCustomRead()
-    const {openModal, msg, result, closeModifyAction, closeDeleteAction } = useCustomResult()
+    const {todo, setTodo, loading, moveList, moveRead } = useCustomRead()
+
+    const {openModal, msg, result, closeAction } = useCustomResult()
 
     const changeTitle = (e:ChangeEvent<HTMLInputElement>):void => {
 
@@ -19,15 +20,13 @@ function ModifyComponent() {
 
     const clickDelete = () => {
         deleteTodo(todo.tno).then(result => {
-            openModal('Todo deleted ' + result)
+            openModal('DELETE TODO ' + result)
         })
     }
 
     const clickModify = () => {
-
-        updateTodo(todo.tno, todo.title).then(result => {
-            console.log(result)
-            openModal(todo.tno +" Updated")
+        updateTodo(todo.tno, todo.title).then(() => {
+            openModal('UPDATE TODO ' + todo.tno )
         })
     }
 
@@ -37,7 +36,17 @@ function ModifyComponent() {
 
             <LoadingComponent isLoading={loading}/>
 
-            <ResultModal show={ result }  msg={ msg } closeResultModal={closeDeleteAction}></ResultModal>
+            <ResultModal
+                show={ result }
+                msg={ msg }
+                closeResultModal={() => closeAction(() => {
+                    if(msg.startsWith('DELETE')) {
+                        moveList()
+                    }else if(msg.startsWith('UPDATE')) {
+                        moveRead(todo.tno)
+                    }
+                })}
+            ></ResultModal>
 
             <h2 className="text-xl font-semibold text-gray-800 mb-4">📌 Todo Modify Component</h2>
 

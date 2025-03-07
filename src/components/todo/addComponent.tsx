@@ -13,9 +13,7 @@ function AddComponent() {
 
     const [todoAdd, setTodoAdd] = useState<TodoAdd>(initState)
 
-    const {result, setResult, closeResultModal} = useCustomResult()
-
-
+    const {result, setResult, closeAddAction} = useCustomResult()
 
     const changeAdd = (e:ChangeEvent<HTMLInputElement>):void => {
 
@@ -29,11 +27,10 @@ function AddComponent() {
 
     }
 
-
     return (
         <div className="max-w-lg mx-auto p-6 bg-white shadow-lg rounded-lg">
 
-            <ResultModal show={ result } closeResultModal={closeResultModal}></ResultModal>
+            <ResultModal show={ result } closeResultModal={closeAddAction}></ResultModal>
 
             <h2 className="text-xl font-semibold text-gray-800 mb-4">📌 Todo Add Component</h2>
 

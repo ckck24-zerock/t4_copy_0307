@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 
 
-const initState:PageResponse<Todo> = {
+const initState:PageResponse<TodoDTO> = {
     dtoList: [],
     total:0,
     size: 0,
@@ -20,7 +20,7 @@ function ListComponent() {
 
     const {page, size, refresh, movePage, moveRead} = useCustomParam()
 
-    const [serverData, setServerData] = useState<PageResponse<Todo>>(initState)
+    const [serverData, setServerData] = useState<PageResponse<TodoDTO>>(initState)
 
     useEffect(() => {
 
@@ -43,7 +43,7 @@ function ListComponent() {
                 <ul className="w-full max-w-2xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden m-2">
 
                     {serverData.dtoList.map(todo =>
-                        <li key={todo.tno} onClick={()=> moveRead(todo.tno || 0) }>
+                        <li key={todo.tno} onClick={()=> moveRead(todo.tno) }>
                             {todo.tno} - {todo.title}
                         </li>
                     )}

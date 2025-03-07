@@ -31,13 +31,14 @@ export default function useCustomParam() {
 
     const [refresh, setRefresh] = useState(false)
 
-    const moveRead = (tnoNumber:number) => {
+    const moveRead = (tnoNumber:number, path ?:string) => {
+
+        const movePath = !path ?'read':path
 
         //todo/read/21?page=1&size=10
-        navigate(`/todo/read/${tnoNumber}${queryString}`)
+        navigate(`/todo/${movePath}/${tnoNumber}${queryString}`)
 
     }
-
 
     const movePage = (pageNum:number):void => {
 
@@ -50,6 +51,8 @@ export default function useCustomParam() {
         navigate(`/todo/list?page=${pageNum}&size=${size}`)
 
     }
+
+
 
     return {page,size, refresh, movePage, moveRead}
 

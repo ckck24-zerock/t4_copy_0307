@@ -1,9 +1,10 @@
 import {useEffect, useState} from "react";
 
-import {useParams} from "react-router";
+import { useParams} from "react-router";
 import {getTodo} from "../../api/todoApi.tsx";
+import useCustomParam from "../../hooks/useCustomParam.tsx";
 
-const initState: Todo = {
+const initState: TodoDTO = {
     tno: 0,
     title: '',
     writer: '',
@@ -14,6 +15,8 @@ const initState: Todo = {
 function ReadComponent() {
 
     const {tno} = useParams() // useParams( )의 값은 모두 문자열
+    const {moveRead} = useCustomParam()
+
 
     const [todo, setTodo] = useState(initState)
 
@@ -68,6 +71,7 @@ function ReadComponent() {
                     >List</button>
                     <button
                         className="px-4 py-2 bg-green-500 text-white rounded"
+                        onClick={() => moveRead(todo.tno,'modify')}
                     >Modify</button>
                 </div>
             </div>

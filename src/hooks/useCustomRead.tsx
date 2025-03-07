@@ -17,11 +17,20 @@ export default function useCustomRead () {
     const {moveRead,moveList} = useCustomParam()
 
     const [todo, setTodo] = useState(initState)
+
+    const [loading, setLoading] = useState(false)
+
     useEffect(() => {
 
-        getTodo(Number(tno)).then(data => setTodo(data))
+        setLoading(true)
+
+        getTodo(Number(tno))
+            .then(data => {
+                setTodo(data)
+                setLoading(false)
+            })
 
     }, [tno]);
 
-    return {tno, moveList,moveRead, todo, setTodo}
+    return {tno, loading, moveList,moveRead, todo, setTodo}
 }

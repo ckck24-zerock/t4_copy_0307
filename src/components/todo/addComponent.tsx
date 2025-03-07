@@ -1,5 +1,20 @@
+import {ChangeEvent, useState} from "react";
+
+
+const initState: TodoAdd = {
+    title: '',
+    writer:''
+}
 
 function AddComponent() {
+
+    const [todoAdd, setTodoAdd] = useState<TodoAdd>(initState)
+
+    const changeAdd = (e:ChangeEvent<HTMLInputElement>):void => {
+
+        const {name, value} = e.target
+        setTodoAdd(prevState => ({...prevState, [name]:value}))
+    }
 
 
     return (
@@ -13,6 +28,9 @@ function AddComponent() {
                     <label className="block text-gray-600 text-sm font-medium">제목</label>
                     <input type="text"
                            className="w-full p-2 border rounded bg-gray-100 text-gray-700"
+                           name='title'
+                           value={todoAdd.title}
+                           onChange={changeAdd}
                     />
                 </div>
 
@@ -20,6 +38,9 @@ function AddComponent() {
                     <label className="block text-gray-600 text-sm font-medium">작성자</label>
                     <input type="text"
                            className="w-full p-2 border rounded bg-gray-100 text-gray-700"
+                           name='writer'
+                           value={todoAdd.writer}
+                           onChange={changeAdd}
 
                     />
                 </div>

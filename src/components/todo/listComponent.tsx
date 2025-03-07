@@ -18,7 +18,7 @@ import PageComponent from "../common/pageComponent.tsx";
 
 function ListComponent() {
 
-    const {page, size, refresh, movePage} = useCustomParam()
+    const {page, size, refresh, movePage, moveRead} = useCustomParam()
 
     const [serverData, setServerData] = useState<PageResponse<Todo>>(initState)
 
@@ -43,7 +43,7 @@ function ListComponent() {
                 <ul className="w-full max-w-2xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden m-2">
 
                     {serverData.dtoList.map(todo =>
-                        <li key={todo.tno}>
+                        <li key={todo.tno} onClick={()=> moveRead(todo.tno || 0) }>
                             {todo.tno} - {todo.title}
                         </li>
                     )}

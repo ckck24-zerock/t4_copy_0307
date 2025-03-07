@@ -1,4 +1,4 @@
-import {useNavigate, useSearchParams} from "react-router";
+import {useLocation, useNavigate, useSearchParams} from "react-router";
 import {useState} from "react";
 
 function getNumber(str: string|null, defaultValue:number ): number {
@@ -21,12 +21,23 @@ export default function useCustomParam() {
 
     const [searchParams] = useSearchParams()
     const navigate = useNavigate()
+    const location = useLocation()
+
+    const queryString = location.search
 
     const page: number = getNumber(searchParams.get("page"), 1)
 
     const size: number = getNumber(searchParams.get("size"), 10)
 
     const [refresh, setRefresh] = useState(false)
+
+    const moveRead = (tnoNumber:number) => {
+
+        //todo/read/21?page=1&size=10
+        navigate(`/todo/read/${tnoNumber}${queryString}`)
+
+    }
+
 
     const movePage = (pageNum:number):void => {
 
@@ -40,6 +51,6 @@ export default function useCustomParam() {
 
     }
 
-    return {page,size, refresh, movePage}
+    return {page,size, refresh, movePage, moveRead}
 
 }

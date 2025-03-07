@@ -2,6 +2,7 @@ import {ChangeEvent, useState} from "react";
 
 import ResultModal from "../common/resultModal.tsx";
 import useCustomResult from "../../hooks/useCustomResult.tsx";
+import {postTodo} from "../../api/todoApi.tsx";
 
 
 const initState: TodoAdd = {
@@ -23,7 +24,11 @@ function AddComponent() {
 
     const clickAdd = () => {
 
-        setResult(true)
+        postTodo(todoAdd).then(result => {
+            console.log(result)
+            setResult(true)
+        })
+
 
     }
 

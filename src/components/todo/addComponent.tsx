@@ -1,7 +1,7 @@
 import {ChangeEvent, useState} from "react";
-import {postTodo} from "../../api/todoApi.tsx";
-import {useNavigate} from "react-router";
+
 import ResultModal from "../common/resultModal.tsx";
+import useCustomResult from "../../hooks/useCustomResult.tsx";
 
 
 const initState: TodoAdd = {
@@ -12,14 +12,10 @@ const initState: TodoAdd = {
 function AddComponent() {
 
     const [todoAdd, setTodoAdd] = useState<TodoAdd>(initState)
-    const [result, setResult] = useState(false)
 
-    const closeResultModal = () => {
+    const {result, setResult, closeResultModal} = useCustomResult()
 
-        setResult(false)
-    }
 
-    //const navigate = useNavigate()
 
     const changeAdd = (e:ChangeEvent<HTMLInputElement>):void => {
 
@@ -30,8 +26,6 @@ function AddComponent() {
     const clickAdd = () => {
 
         setResult(true)
-
-
 
     }
 
